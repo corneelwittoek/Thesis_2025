@@ -2,8 +2,8 @@ library(dplyr)
 library(xml2)
 
 #load helper functions: assign seedlings and replacement of climate values
-source("C:/Users/corne/OneDrive - UGent/thesis/parameterfile/assignseedlings.R", echo=TRUE)
-source("C:/Users/corne/OneDrive - UGent/thesis/klimaatverandering/replace_climate_values.R", echo=TRUE)
+source("./assignseedlings.R", echo=TRUE)
+source("./replace_climate_values.R", echo=TRUE)
 
 #choose number of simulations
 n <- 20
@@ -21,11 +21,11 @@ plotinfo <- data.frame(
   x = c(56, 120, 61, 52, 63),
   y = c(101, 45, 82, 98, 30),
   map2024 = c(
-    "C:\\Users\\corne\\OneDrive - UGent\\thesis\\treemaps\\treemap_36_2024.txt",
-    "C:\\Users\\corne\\OneDrive - UGent\\thesis\\treemaps\\treemap_38_2024.txt",
-    "C:\\Users\\corne\\OneDrive - UGent\\thesis\\treemaps\\treemap_44_2024.txt",
-    "C:\\Users\\corne\\OneDrive - UGent\\thesis\\treemaps\\treemap_50_2024.txt",
-    "C:\\Users\\corne\\OneDrive - UGent\\thesis\\treemaps\\treemap_51_2024.txt"
+    ".\\treemap_36_2024.txt",
+    ".\\treemap_38_2024.txt",
+    ".\\treemap_44_2024.txt",
+    ".\\treemap_50_2024.txt",
+    ".\\treemap_51_2024.txt"
   ),
   stringsAsFactors = FALSE
 )
@@ -98,9 +98,10 @@ for (j in 1:n) {
   xml_text(ou_filename_node) <- unique_filename
   
   #save parameterfile in desired directory
-  filename <- sprintf("klimaat/parfiles_shade/sim_%s_%s_%03d.xml", map, scenario, j)
+  filename <- sprintf("klimaat/sim_%s_%s_%03d.xml", map, scenario, j)
   
   write_xml(doc_copy, filename)
 }
 }
+
 }
